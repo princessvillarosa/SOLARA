@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOLARA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8 bg-[#F5F5DC] min-h-screen flex flex-col items-center">
+
+    <div class="w-full max-w-4xl bg-white rounded-xl shadow-lg p-6 sm:p-8">
+
+        <header class="flex flex-col sm:flex-row sm:justify-between sm:items-center pb-6 border-b border-[#C2B280] text-center sm:text-left">
+            <div>
+                <h1 class="text-3xl sm:text-4xl font-bold text-[#2E4A62]">SOLARA</h1>
+                <p class="text-sm italic text-[#5C4033]">Glowing Where the Sun Meets the Skin</p>
+            </div>
+            <div class="flex items-center justify-center sm:justify-end space-x-4 mt-4 sm:mt-0">
+                <div class="relative group">
+                    <button class="bg-[#2E4A62] hover:bg-[#1F3549] text-white p-3 rounded-full shadow-lg transition-transform transform hover:scale-110">
+                        <!-- Profile Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </button>
+                    <div class="absolute top-12 left-1/2 -translate-x-1/2 w-40 bg-[#2E4A62] text-white text-xs text-center rounded py-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        Profile coming soon!
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <button id="cartButton" class="relative bg-[#2E4A62] hover:bg-[#1F3549] text-white p-3 rounded-full shadow-lg transition-transform transform hover:scale-110">
+                        <!-- Cart Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.182 1.905.705 2.188A16.037 16.037 0 0016.924 21.724a1.5 1.5 0 00.121-.295" />
+                        </svg>
+                        <span id="cartCount" class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center -mt-2 -mr-2">0</span>
+                    </button>
+                    
+                    <div id="cartModal" class="hidden absolute top-12 right-0 w-80 bg-white rounded-lg shadow-xl border border-gray-200 z-10 transition-transform transform scale-95 opacity-0">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-[#2E4A62] mb-2">Shopping Cart</h3>
+                            <ul id="cartItems" class="space-y-2"></ul>
+                            <div id="cartStatus" class="text-sm text-gray-500 text-center hidden">Your cart is empty.</div>
+                            <div class="pt-4 mt-4 border-t border-gray-200 text-right font-bold text-lg text-[#2E4A62]">
+                                Total: <span id="cartTotal">₱0.00</span>
+                            </div>
+                            <div class="flex justify-end space-x-2 pt-2">
+                                <button id="checkoutButton" class="bg-[#5A7CA4] text-white px-4 py-2 rounded-md hover:bg-[#466382] transition-colors duration-300">Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main id="productList" class="grid grid-cols-2 gap-6 pt-6">
+
+            <div class="bg-[#FAF9F6] rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                <img src="gloss.jpg" class="w-50 h-50">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold text-[#2E4A62]">Lumière Gloss</h2>
+                    <p class="text-[#5C4033] my-2">A radiant, non-sticky lip gloss that delivers a luminous shine, perfect for sunlit days.</p>
+                    <span class="text-lg font-bold text-[#466382]">₱129.00</span>
+                    <button class="add-to-cart-btn mt-4 w-full bg-[#5A7CA4] text-white py-2 rounded-md hover:bg-[#466382] transition-colors duration-300" data-name="Lumière Gloss" data-price="129.00">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-[#FAF9F6] rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                <img src="veil.jpg" class="w-30 h-30">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold text-[#2E4A62]">Éclat Veil</h2>
+                    <p class="text-[#5C4033] my-2">A lightweight foundation that provides a flawless, glowing finish while withstanding tropical humidity.</p>
+                    <span class="text-lg font-bold text-[#466382]">₱249.99</span>
+                    <button class="add-to-cart-btn mt-4 w-full bg-[#5A7CA4] text-white py-2 rounded-md hover:bg-[#466382] transition-colors duration-300" data-name="Éclat Veil" data-price="249.99">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-[#FAF9F6] rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                <img src="palette.jpg" class="w-30 h-30">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold text-[#2E4A62]">Soleil Palette</h2>
+                    <p class="text-[#5C4033] my-2">An exquisite collection of warm, sun-inspired shades designed to last from beach to night.</p>
+                    <span class="text-lg font-bold text-[#466382]">₱199.50</span>
+                    <button class="add-to-cart-btn mt-4 w-full bg-[#5A7CA4] text-white py-2 rounded-md hover:bg-[#466382] transition-colors duration-300" data-name="Soleil Palette" data-price="199.50">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-[#FAF9F6] rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                <img src="foundation.jpg" class="w-30 h-30">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold text-[#2E4A62]">Rosée Bloom</h2>
+                    <p class="text-[#5C4033] my-2">A soft, natural blush that imparts a fresh, dewy flush, perfect for glowing in the heat.</p>
+                    <span class="text-lg font-bold text-[#466382]">₱194.00</span>
+                    <button class="add-to-cart-btn mt-4 w-full bg-[#5A7CA4] text-white py-2 rounded-md hover:bg-[#466382] transition-colors duration-300" data-name="Rosée Bloom" data-price="194.00">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+            
+
+
+        </main>
+
+        <section class="mt-8 pt-6 border-t border-[#C2B280]">
+            <div class="p-6 bg-[#F5F5DC] rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold text-[#2E4A62] mb-4">Contact Us</h2>
+                <p class="text-[#5C4033] font-semibold mb-2">Feel free to reach out to us with any questions!</p>
+                <div class="flex items-center space-x-2 text-[#466382] mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                    <span>SOLARA@gmail.com</span>
+                </div>
+                <div class="flex items-center space-x-2 text-[#466382]">
+                    <span>(123) 456-7890</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JavaScript (unchanged) -->
+    <script>
+        const cartButton = document.getElementById('cartButton');
+        const cartModal = document.getElementById('cartModal');
+        const cartCount = document.getElementById('cartCount');
+        const cartItemsList = document.getElementById('cartItems');
+        const cartTotalDisplay = document.getElementById('cartTotal');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+        const cartStatus = document.getElementById('cartStatus');
+        const checkoutButton = document.getElementById('checkoutButton');
+        
+        let cart = [];
+
+        function toggleCartModal() {
+            const isHidden = cartModal.classList.contains('hidden');
+            if (isHidden) {
+                cartModal.classList.remove('hidden', 'scale-95', 'opacity-0');
+                cartModal.classList.add('scale-100', 'opacity-100');
+            } else {
+                cartModal.classList.remove('scale-100', 'opacity-100');
+                cartModal.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    cartModal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function updateCartDisplay() {
+            cartItemsList.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartStatus.classList.remove('hidden');
+            } else {
+                cartStatus.classList.add('hidden');
+            }
+
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.className = "flex justify-between items-center text-gray-700";
+                li.innerHTML = `
+                    <div class="flex-grow">
+                        <span>${item.name} x ${item.quantity}</span>
+                        <br>
+                        <span class="text-sm text-gray-500">₱${item.price.toFixed(2)} each</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span>₱${(item.price * item.quantity).toFixed(2)}</span>
+                        <button class="delete-btn text-red-500 hover:text-red-700 transition-colors duration-200" data-index="${index}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                cartItemsList.appendChild(li);
+                
+                total += item.price * item.quantity;
+            });
+
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartTotalDisplay.textContent = `₱${total.toFixed(2)}`;
+        }
+
+        function deleteCartItem(index) {
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        function checkout() {
+            if (cart.length > 0) {
+                alert('Thank you for your purchase! Your order has been placed.');
+                cart = [];
+                updateCartDisplay();
+            } else {
+                alert('Your cart is empty. Please add some items before checking out.');
+            }
+        }
+
+        cartButton.addEventListener('click', toggleCartModal);
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productName = e.target.getAttribute('data-name');
+                const productPrice = parseFloat(e.target.getAttribute('data-price'));
+                const existingItem = cart.find(item => item.name === productName);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ name: productName, price: productPrice, quantity: 1 });
+                }
+
+                updateCartDisplay();
+            });
+        });
+
+        cartItemsList.addEventListener('click', (e) => {
+            if (e.target.closest('.delete-btn')) {
+                const index = e.target.closest('.delete-btn').getAttribute('data-index');
+                deleteCartItem(index);
+            }
+        });
+
+        checkoutButton.addEventListener('click', checkout);
+
+        window.addEventListener('click', (e) => {
+            if (!cartModal.contains(e.target) && !cartButton.contains(e.target) && !cartModal.classList.contains('hidden')) {
+                toggleCartModal();
+            }
+        });
+
+        updateCartDisplay();
+    </script>
+</body>
+</html>
